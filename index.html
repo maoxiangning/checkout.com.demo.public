@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iPhone Case Demo</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23323416'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' fill='%23FFFFFD' font-family='Arial'%3EC%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="panel">
+        <div class="brand-chip">Checkout.com Flow Demo</div>
+        <h1>iPhone Case</h1>
+        <p class="sub">iPhone cases for Hong Kong and the Netherlands</p>
+
+        <div class="group two-col">
+          <div>
+            <label for="market">Market</label>
+            <select id="market">
+              <option value="HK">Hong Kong</option>
+              <option value="NL" selected>Netherlands</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="currency">Transaction currency</label>
+            <select id="currency"></select>
+          </div>
+        </div>
+
+        <div class="group two-col">
+          <div>
+            <label for="locale">Checkout language</label>
+            <select id="locale"></select>
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="buyer@example.com"
+              value="test@example.com"
+            />
+          </div>
+        </div>
+
+        <div class="group checkbox-group">
+          <label class="checkbox-row" for="require3ds">
+            <input id="require3ds" type="checkbox" />
+            <span>Require 3DS on the initial transaction</span>
+          </label>
+          <p class="micro-copy">
+            Flow still handles the authentication UI. This only changes the
+            payment-session request.
+          </p>
+        </div>
+
+        <div class="group">
+          <label>Products</label>
+          <div id="products"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Basket summary</h2>
+        <div id="summary"></div>
+
+        <div class="button-row">
+          <button id="loadCheckoutBtn" class="primary">
+            Open smart checkout
+          </button>
+          <button id="loadMethodsBtn" class="secondary">
+            Show payment methods separately
+          </button>
+        </div>
+
+        <div id="message"></div>
+
+        <div class="status-card">
+          <h3>Payment result</h3>
+          <div id="payment-result" class="result-list">
+            <p class="empty-state">No payment checked yet.</p>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <h3>Webhook / order confirmation</h3>
+          <div id="order-result" class="result-list">
+            <p class="empty-state">No webhook state yet.</p>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <h3>Refund captured payment</h3>
+          <p id="refund-hint" class="micro-copy">
+            Refund becomes available after the payment is captured.
+          </p>
+          <div class="refund-row">
+            <input id="refundAmount" type="text" placeholder="Refund amount" />
+            <button id="refundBtn" class="secondary inline-action" disabled>
+              Submit refund
+            </button>
+          </div>
+          <div id="refund-result" class="result-list">
+            <p class="empty-state">No refund requested yet.</p>
+          </div>
+        </div>
+
+        <div id="checkout-hint" class="micro-copy"></div>
+
+        <section id="flow-mode" class="checkout-shell">
+          <h3>Smart checkout</h3>
+          <div id="flow-container"></div>
+        </section>
+
+        <section id="methods-mode" class="checkout-shell hidden">
+          <h3>Individual payment methods</h3>
+          <div class="method-grid">
+            <article class="method-card">
+              <div class="method-header">
+                <h4>Card</h4>
+                <span id="card-badge" class="availability-badge">Waiting</span>
+              </div>
+              <div id="card-container"></div>
+            </article>
+
+            <article class="method-card">
+              <div class="method-header">
+                <h4>Apple Pay</h4>
+                <span id="applepay-badge" class="availability-badge">Waiting</span>
+              </div>
+              <div id="applepay-container"></div>
+            </article>
+
+            <article class="method-card">
+              <div class="method-header">
+                <h4>PayPal</h4>
+                <span id="paypal-badge" class="availability-badge">Waiting</span>
+              </div>
+              <div id="paypal-container"></div>
+            </article>
+
+            <article class="method-card">
+              <div class="method-header">
+                <h4>AlipayHK</h4>
+                <span id="alipay_hk-badge" class="availability-badge">Waiting</span>
+              </div>
+              <div id="alipay_hk-container"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://checkout-web-components.checkout.com/index.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
